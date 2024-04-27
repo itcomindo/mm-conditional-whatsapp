@@ -1,0 +1,347 @@
+:root {
+  --mcw-color-accent-1-light: #58c07e;
+  --mcw-color-accent-1: #15a349;
+  --mcw-color-accent-2-light: #c0717a;
+  --mcw-color-accent-2: #9b0718;
+  --mcw-color-accent-3-light: #b38400;
+  --mcw-color-accent-3: #866300;
+  --mcw-color-accent-4-light: #7db0c0;
+  --mcw-color-accent-4: #066492;
+}
+
+/**
+=========================
+* Global Style
+* @todo global style
+*=========================
+*/
+.mcw-hover-top {
+  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) all;
+}
+.mcw-hover-top:hover {
+  transform: translateY(-10px);
+  transition: 0.3s linear all;
+}
+.curpointer {
+  cursor: pointer;
+}
+.mcw-component {
+  position: fixed;
+  bottom: 3rem;
+  right: 1rem;
+}
+.mcw-no-scroll {
+  overflow: hidden;
+}
+/**
+=========================
+* Greeting Style
+* @todo greeting style
+*=========================
+*/
+
+#mcw-greeting {
+  box-sizing: border-box;
+  width: 68px;
+  height: 68px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, green, darkgreen, green);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  z-index: 9999;
+  transition: 0.3s linear all;
+  transform: scale(1);
+}
+#mcw-greeting:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 25%;
+  border-radius: 50%;
+  left: 0;
+  bottom: -1.5rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  filter: blur(5px);
+  opacity: 0.4;
+}
+#mcw-greeting.hide {
+  transform: scale(0);
+  transition: 0.3s linear all;
+  z-index: -1;
+}
+
+#mcw-greeting-icon-wr {
+  box-sizing: border-box;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  fill: white;
+}
+
+#mcw-greeting-text-wr {
+  box-sizing: border-box;
+  background-color: black;
+  color: white;
+  width: 150px;
+  position: fixed;
+  right: calc(1rem + 80px);
+  bottom: 80px;
+  margin: 0;
+  padding: 8px;
+  font-size: 12px;
+  border-radius: 10px;
+  z-index: 5500;
+  transform: scale(1);
+  transition: 0.3s linear all;
+}
+#mcw-greeting-text-wr.hide {
+  transform: scale(0);
+  transition: 0.3s linear all;
+}
+
+span.mcw-greeting-text {
+  line-height: 1.3;
+}
+
+/**
+=========================
+* MCW Content
+* @todo MCW Content
+*=========================
+*/
+
+#mcw {
+  box-sizing: border-box;
+  width: 300px;
+  background-color: silver;
+  border-radius: 10px;
+  padding: 8px;
+  font-size: 12px;
+  box-shadow: 2px 2px 15px 0 rgba(0, 0, 0, 0.2);
+  transform: scale(1);
+  z-index: 9999;
+  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) all;
+}
+
+#mcw.hide {
+  z-index: -1;
+  transform: scale(0);
+  transition: 0.3s linear all;
+}
+
+#mcw * {
+  box-sizing: border-box;
+}
+
+#mcw-wr {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #f5f5f5;
+  padding: 8px 4px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 2;
+  overflow: hidden;
+  position: relative;
+}
+
+.mcw-close {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: silver;
+  border-radius: 50%;
+  top: -15px;
+}
+.mcw-close span {
+  position: relative;
+  top: -3px;
+}
+.mcwi {
+  box-sizing: border-box;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 60px 100px 1fr;
+  gap: 4px;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 4px;
+  border-radius: 10px;
+  line-height: 1.1;
+  box-shadow: 2px 2px 15px 0 rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+.mcwil {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.mcwil-photo-wr {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.mcwil-photo-wr img.mcw-find-this {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mcwim {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: left;
+  padding: 4px;
+  gap: 4px;
+  font-size: 13px;
+}
+
+.mcw-name {
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.mcw-job {
+  font-size: 12px;
+}
+
+.mcw-phone-number {
+  font-size: 9px;
+}
+
+.mcwir {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 4px;
+}
+
+ul.mcw-list {
+  width: 100%;
+  box-sizing: border-box;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  gap: 4px;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 0;
+}
+
+ul.mcw-list li {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 5px;
+  overflow: hidden;
+}
+ul.mcw-list li a.mcw-cta {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 4px;
+  text-decoration: none;
+  color: white;
+  /* color: #333; */
+  line-height: 1;
+  padding: 4px 8px;
+}
+
+ul.mcw-list li a.mcw-cta .mcwii {
+  width: 16px;
+  fill: #fff;
+}
+ul.mcw-list li a.mcw-cta.mcw-wa-btn {
+  background: linear-gradient(135deg, #15a349, #58c07e, #15a349);
+}
+ul.mcw-list li a.mcw-cta.mcw-call-btn {
+  background: linear-gradient(135deg, #9b0718, #c0717a, #9b0718);
+}
+ul.mcw-list li a.mcw-cta.mcw-email-btn {
+  background: linear-gradient(135deg, #866300, #b38400, #866300);
+}
+ul.mcw-list li a.mcw-cta.mcw-telegram-btn {
+  background: linear-gradient(135deg, #066492, #7db0c0, #066492);
+}
+
+/**
+=========================
+* Promo
+* @todo promo
+*=========================
+*/
+
+#mcw-promo {
+  width: 250px;
+  padding: calc(1rem + 15px) 8px 1rem 8px;
+  background: linear-gradient(
+    135deg,
+    var(--mcw-color-accent-1),
+    var(--mcw-color-accent-2),
+    var(--mcw-color-accent-3)
+  );
+  color: white;
+  font-size: 12px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  transform: scale(1);
+  z-index: 9999;
+  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) all;
+}
+
+#mcw-promo.hide {
+  z-index: -1;
+  transform: scale(0);
+  transition: 0.3s linear all;
+}
+
+#mcw-promo a {
+  text-decoration: underline;
+  color: white;
+}
+#mcw-promo div {
+  box-sizing: border-box;
+}
+
+.close-mcw-promo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
