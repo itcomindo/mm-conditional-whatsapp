@@ -16,14 +16,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
         //launch whatsapp content start
         function mcwLaunchWhatsapp() {
 
-            //check condition staff available or not start
-            var $staffAvailable = jQuery('#mcw-greeting').attr('data-staff-available');
-            console.log($staffAvailable);
-            if ('false' == $staffAvailable) {
-                jQuery('#mcw-greeting, #mcw-greeting-text-wr, #mcw, #mcw-promo').remove();
-            }
-            //check condition staff available or not end
-
             var $promo = jQuery('#mcw-greeting').attr('data-mcw-promo');
             var $mcwTrigger = jQuery('.mcw-trigger');
             $mcwTrigger.on('click', function () {

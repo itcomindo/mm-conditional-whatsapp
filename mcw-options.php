@@ -63,8 +63,22 @@ function mcw_register_fields() {
 			->set_default_value( false )
 			->set_help_text( 'Check this box to include post or product title. It will include your post or product title in whatsapp or telegram chat' ),
 
-			// complex for staff start.
+			// text before post or product title if mcw_include_title is checked.
+			Field::make( 'text', 'mcw_title_prefix', 'Title Text' )
+			->set_required( true )
+			->set_attribute( 'maxLength', 100 )
+			->set_default_value( 'Hallo Saya ingin bertanya tentang' )
+			->set_help_text( 'Please fill in the title text, please dont write to long max characters is 100, e.g hallo saya ingin bertanya tentang' )
+			->set_conditional_logic(
+				array(
+					array(
+						'field' => 'mcw_include_title',
+						'value' => true,
+					),
+				)
+			),
 
+			// complex for staff start.
 			Field::make( 'complex', 'mcw', 'Whatsapp Staff' )
 			->set_layout( 'tabbed-horizontal' )
 			->add_fields(
