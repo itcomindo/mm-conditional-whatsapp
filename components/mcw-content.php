@@ -65,7 +65,7 @@ function mm_get_staff() {
 							<?php
 						} else {
 							$mcw_default_photo = $staff['mcw_default_photo'];
-							echo '<img class="mcw-find-this" src="' . esc_html( MCW_URL ) . 'images/' . esc_html( $mcw_default_photo ) . '.png" alt="customer service">';
+							echo '<img class="mcw-find-this" src="' . esc_html( MCW_URL ) . 'assets/images/' . esc_html( $mcw_default_photo ) . '.png" alt="customer service">';
 						}
 						?>
 						</div>
@@ -171,7 +171,7 @@ function mm_get_staff() {
 						<?php
 					} else {
 						$mcw_default_photo = $staff['mcw_default_photo'];
-						echo '<img class="mcw-find-this" src="' . esc_html( MCW_URL ) . 'images/' . esc_html( $mcw_default_photo ) . '.png" alt="customer service">';
+						echo '<img class="mcw-find-this" src="' . esc_html( MCW_URL ) . 'assets/images/' . esc_html( $mcw_default_photo ) . '.png" alt="customer service">';
 					}
 					?>
 					</div>
