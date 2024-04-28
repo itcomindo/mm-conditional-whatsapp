@@ -171,6 +171,7 @@ require_once MCW_PATH . 'mcw-timezone.php';
  * Load style and script
  */
 function mm_mcw_enqueue_script() {
+	wp_enqueue_style( 'animate-style', 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css', array(), '4.1.1', 'all' );
 	wp_enqueue_style( 'mcw-style', MCW_URL . 'style.css', array(), '1.0', 'all' );
 	wp_enqueue_script( 'mcw-script', MCW_URL . 'js.js', array( 'jquery' ), '1.0', true );
 }

@@ -28,14 +28,14 @@ function mm_mcw_greeting() {
 		$promo = 'data-mcw-promo=false';
 	}
 	?>
-	<div id="mcw-greeting" class="mcw-trigger curpointer mcw-hover-top mcw-component <?php echo esc_html( $debug_mode ); ?>" <?php echo esc_html( $promo ); ?>>
+	<div id="mcw-greeting" class="animate__animated animate__rubberBand mcw-trigger curpointer mcw-hover-top mcw-component <?php echo esc_html( $debug_mode ); ?>" <?php echo esc_html( $promo ); ?>>
 		<div id="mcw-greeting-icon-wr">
 			<?php
 			echo wp_kses( mm_mcw_get_image()['wa'], $pass );
 			?>
 		</div>
 	</div>
-	<div id="mcw-greeting-text-wr" class="curpointer mcw-trigger <?php echo esc_html( $debug_mode ); ?>">
+	<div id="mcw-greeting-text-wr" class="animate__animated animate__backInUp animate__delay-1s curpointer mcw-trigger <?php echo esc_html( $debug_mode ); ?>">
 		<span class="mcw-greeting-text"><?php echo esc_html( carbon_get_theme_option( 'mcw_greeting_text' ) ); ?></span>
 	</div>
 	<?php

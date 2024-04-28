@@ -21,7 +21,7 @@ function mm_mcw_promo() {
 		if ( 'text' === $mcw_promo_type ) {
 			$promo_text = carbon_get_theme_option( 'mcw_promo_text' );
 			?>
-			<div id="mcw-promo" class="mcw-component mcw-promo-text hide">
+			<div id="mcw-promo" class="animate__animated mcw-component mcw-promo-text hide">
 				<div class="close-mcw-promo">X</div>
 				<div id="mcw-promo-wr" class="mcw-promo-content">
 					<span><?php echo wp_kses( $promo_text, $pass ); ?></span>
@@ -32,7 +32,7 @@ function mm_mcw_promo() {
 		} else {
 			$promo_image_url = carbon_get_theme_option( 'mcw_promo_image' );
 			?>
-			<div id="mcw-promo" class="mcw-component mcw-promo-image hide">
+			<div id="mcw-promo" class="animate__animated mcw-component mcw-promo-image hide">
 				<div class="close-mcw-promo">X</div>
 				<div id="mcw-promo-wr" class="mcw-promo-content">
 					<a href="<?php echo esc_html( carbon_get_theme_option( 'mcw_promo_button_url' ) ); ?>" title="Promo Ads" rel="noopener nofollow">

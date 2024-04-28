@@ -19,35 +19,39 @@ window.addEventListener('DOMContentLoaded', (event) => {
             var $promo = jQuery('#mcw-greeting').attr('data-mcw-promo');
             var $mcwTrigger = jQuery('.mcw-trigger');
             $mcwTrigger.on('click', function () {
-                jQuery('.mcw-trigger').addClass('hide');
-                jQuery('#mcw').removeClass('hide');
-                jQuery('body').addClass('mcw-no-scroll');
-                jQuery('.mcw-close').on('click', function () {
+                jQuery('.mcw-trigger').addClass('hide').removeClass('animate__rubberBand');
+                jQuery('#mcw').removeClass('hide').addClass('animate__rubberBand');
 
+                setTimeout(function () {
+                    jQuery('.mcwi').addClass('mcw-scale');
+                }, 300);
+                jQuery('.mcw-close').on('click', function () {
                     if ('true' == $promo) {
-                        jQuery('#mcw-promo').removeClass('hide');
-                        jQuery('#mcw').addClass('hide');
-                        jQuery('body').removeClass('mcw-no-scroll');
+                        jQuery('.mcwi').removeClass('mcw-scale');
+                        jQuery('#mcw-promo').removeClass('hide').addClass('animate__rubberBand');
+                        jQuery('#mcw').addClass('hide').removeClass('animate__rubberBand');
                         jQuery('.close-mcw-promo').on('click', function () {
-                            jQuery('#mcw-promo').addClass('hide');
-                            jQuery('#mcw-greeting.mcw-trigger').removeClass('hide');
+                            jQuery('#mcw-promo').addClass('animate__hinge').removeClass('animate__rubberBand');
+
                             setTimeout(function () {
-                                jQuery('#mcw-greeting-text-wr.mcw-trigger').removeClass('hide');
+                                jQuery('#mcw-promo').removeClass('animate__hinge animate__rubberBand').addClass('hide');
+                            }, 2000);
+
+
+                            jQuery('#mcw-greeting.mcw-trigger').removeClass('hide').addClass('animate__rubberBand');
+                            setTimeout(function () {
+                                jQuery('#mcw-greeting-text-wr.mcw-trigger').removeClass('hide').addClass('animate__backInUp');
                             }, 1000);
 
                         });
                     } else {
-                        jQuery('#mcw-greeting.mcw-trigger').removeClass('hide');
+                        // jQuery('#mcw-greeting.mcw-trigger').removeClass('hide');
+                        jQuery('#mcw-greeting.mcw-trigger').removeClass('hide').addClass('animate__rubberBand');
                         jQuery('#mcw').addClass('hide');
-                        jQuery('body').removeClass('mcw-no-scroll');
                         setTimeout(function () {
-                            jQuery('#mcw-greeting-text-wr.mcw-trigger').removeClass('hide');
+                            jQuery('#mcw-greeting-text-wr.mcw-trigger').removeClass('hide').addClass('animate__backInUp');
                         }, 1000);
                     }
-
-
-
-
 
                 });
             });

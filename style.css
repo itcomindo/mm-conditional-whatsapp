@@ -183,6 +183,13 @@ span.mcw-greeting-text {
   line-height: 1.1;
   box-shadow: 2px 2px 15px 0 rgba(0, 0, 0, 0.2);
   z-index: 2;
+  transform: scale(0);
+}
+
+.mcwi.mcw-scale {
+  transform: scale(1);
+  transition: 0.3s linear all;
+  transition-delay: 0.3s;
 }
 
 .mcwil {

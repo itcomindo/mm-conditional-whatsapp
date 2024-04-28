@@ -15,19 +15,12 @@ defined( 'ABSPATH' ) || die( 'No script kiddies please!' );
 function mm_mcw_whatsapp() {
 	$pass = mah( array( 'svg', 'img', 'src' ) );
 	?>
-	<div id="mcw" class="mcw-component hide">
+	<div id="mcw" class="animate__animated mcw-component hide">
 		<div class="mcw-close curpointer"><span>X</span></div>
 		<div id="mcw-wr">
-
-			<!-- wait -->
 			<?php
 			mm_get_staff();
 			?>
-
-
-
-
-
 		</div>
 	</div>
 	<?php
