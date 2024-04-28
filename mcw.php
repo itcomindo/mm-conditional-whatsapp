@@ -4,7 +4,7 @@
  * Plugin Name: MM Condition Whatsapp
  * Plugin URI: https://budiharyono.id/
  * Description: This plugin is used to show the whatsapp button on the website.
- * Version: 1.0
+ * Version: 1.1
  * Author: Budi Haryono
  * Author URI: https://budiharyono.id/
  *
@@ -177,6 +177,24 @@ function mm_mcw_enqueue_script() {
 add_action( 'wp_enqueue_scripts', 'mm_mcw_enqueue_script' );
 
 
+/**
+ * Load mcw-admin.css in WordPress admin
+ */
+function mm_mcw_admin_enqueue_script() {
+	wp_enqueue_style( 'mcw-admin', MCW_URL . 'mcw-admin.css', array(), '1.0', 'all' );
+}
+add_action( 'admin_enqueue_scripts', 'mm_mcw_admin_enqueue_script' );
+
+/**
+ * Load Font Awesome if not exist
+ */
+function mcw_enqueue_fa() {
+	if ( ! wp_style_is( 'fontawesome-handle', 'enqueued' ) ) {
+		wp_enqueue_style( 'mm-fontawesome-cdn', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css', array(), '6.5.1' );
+	}
+}
+
+add_action( 'wp_enqueue_scripts', 'mcw_enqueue_fa' );
 
 
 

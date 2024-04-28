@@ -1,0 +1,21 @@
+.mcwsep {
+  background-color: black;
+}
+.mcwsep-child {
+  background-color: darkred;
+}
+.mcwsep .cf-field__help {
+  color: silver !important;
+}
+.mcwsep h3 {
+  font-size: 14px;
+  color: silver;
+  line-height: 1;
+  margin: 0;
+}
+.mcwsep-child h3 {
+  color: silver;
+  font-size: 12px;
+  margin: 0;
+  line-height: 1;
+}

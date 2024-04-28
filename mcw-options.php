@@ -29,6 +29,9 @@ function mcw_register_fields() {
 			)
 			->set_help_text( 'Please select your timezone this will make plugin related to your location' ),
 
+			Field::make( 'separator', 'greetingsep', 'Greeting/Calout Options' )
+					->set_classes( 'mcwsep' ),
+
 			// greeting text.
 			Field::make( 'textarea', 'mcw_greeting_text', 'Greeting Text' )
 			->set_required( true )
@@ -36,11 +39,34 @@ function mcw_register_fields() {
 			->set_default_value( 'Customer servivce kami siap membantu Anda, Lets get in touch' )
 			->set_help_text( 'Please fill in the greeting text, please dont write to long max characters is 100' ),
 
+			/**
+			 * #########################################################
+			 * Promotion Block
+			 *
+			 * @todo Promotion block
+			 * #########################################################
+			 */
+
+			Field::make( 'separator', 'promosep', 'Promotion Options' )
+					->set_classes( 'mcwsep' )
+					->set_help_text( 'Aktifkan ini jika Anda ingin menampilkan promosi yang tampil ketika user melakukan cancel untuk mengirim chat' ),
+
 			// checkbox to enable promo.
 			Field::make( 'checkbox', 'mcw_enable_promo', 'Enable Promo' )
 			->set_option_value( 'yes' )
 			->set_default_value( false )
 			->set_help_text( 'Check this box to enable promo.' ),
+
+			// select promo type text with button or image with url.
+			Field::make( 'select', 'mcw_promo_type', 'Promo Type' )
+			->add_options(
+				array(
+					'text'  => 'Text With Button',
+					'image' => 'Image With URL',
+				)
+			)
+			->set_default_value( 'text' )
+			->set_help_text( 'Please select promo type' ),
 
 			// textarea to promo text.
 			Field::make( 'textarea', 'mcw_promo_text', 'Promo Text' )
@@ -50,12 +76,73 @@ function mcw_register_fields() {
 			->set_help_text( 'Please fill in the promo text, please dont write to long max characters is 100' )
 			->set_conditional_logic(
 				array(
+					'relation' => 'AND',
 					array(
-						'field' => 'mcw_enable_promo',
-						'value' => true,
+						'field'   => 'mcw_enable_promo',
+						'value'   => true,
+						'compare' => '=',
+					),
+					array(
+						'field'   => 'mcw_promo_type',
+						'value'   => 'text',
+						'compare' => '=',
 					),
 				)
 			),
+
+			// image to promo.
+			Field::make( 'image', 'mcw_promo_image', 'Promo Image' )
+			->set_required( true )
+			->set_conditional_logic(
+				array(
+					'relation' => 'AND',
+					array(
+						'field'   => 'mcw_enable_promo',
+						'value'   => true,
+						'compare' => '=',
+					),
+					array(
+						'field'   => 'mcw_promo_type',
+						'value'   => 'image',
+						'compare' => '=',
+					),
+				)
+			),
+
+			// promo button url.
+			Field::make( 'text', 'mcw_promo_button_url', 'Promo Button URL' )
+			->set_required( true )
+			->set_attribute( 'placeholder', 'https://example.com' )
+			->set_default_value( 'https://example.com' )
+			->set_help_text( 'Please fill in the promo button url where this is your promotion page' )
+			->set_conditional_logic(
+				array(
+					array(
+						'field'   => 'mcw_enable_promo',
+						'value'   => true,
+						'compare' => '=',
+					),
+				)
+			),
+
+			// promo button text.
+			Field::make( 'text', 'mcw_promo_button_text', 'Promo Button Text' )
+			->set_required( true )
+			->set_attribute( 'placeholder', 'Read More' )
+			->set_default_value( 'Read More' )
+			->set_help_text( 'Please fill in the promo button text' )
+			->set_conditional_logic(
+				array(
+					array(
+						'field'   => 'mcw_enable_promo',
+						'value'   => true,
+						'compare' => '=',
+					),
+				)
+			),
+
+			Field::make( 'separator', 'titlesep', 'Include Title' )
+					->set_classes( 'mcwsep' ),
 
 			// checkbox to include post or product title.
 			Field::make( 'checkbox', 'mcw_include_title', 'Include Post or Product Title' )
@@ -77,6 +164,17 @@ function mcw_register_fields() {
 					),
 				)
 			),
+
+			/**
+			 * #########################################################
+			 * CTA Block
+			 *
+			 * @todo CTA block
+			 * #########################################################
+			 */
+
+			Field::make( 'separator', 'ctaitemsep', 'Staff CTA' )
+					->set_classes( 'mcwsep' ),
 
 			// complex for staff start.
 			Field::make( 'complex', 'mcw', 'Whatsapp Staff' )
@@ -170,8 +268,8 @@ function mcw_register_fields() {
 					->set_default_value( 'Support' )
 					->set_help_text( 'Please fill in the staff job. e,g Support leave it blank if you dont want to show' ),
 
-					Field::make( 'separator', 'wasep', 'Whatsapp' )
-					->set_classes( 'mcwsep' ),
+					Field::make( 'separator', 'wasep', 'Whatsapp Options' )
+					->set_classes( 'mcwsep-child' ),
 
 					// checkbox to show whatsapp button.
 					Field::make( 'checkbox', 'mcw_show_wa', 'Show Whatsapp Button' )
@@ -202,8 +300,8 @@ function mcw_register_fields() {
 					->set_default_value( 'Chat' )
 					->set_help_text( 'Please fill in the whatsapp button text. e,g Chat' ),
 
-					Field::make( 'separator', 'callsep', 'Call' )
-					->set_classes( 'mcwsep' ),
+					Field::make( 'separator', 'callsep', 'Call Options' )
+					->set_classes( 'mcwsep-child' ),
 
 					// checkbox to show call button.
 					Field::make( 'checkbox', 'mcw_show_call', 'Show Call Button' )
@@ -228,8 +326,8 @@ function mcw_register_fields() {
 					->set_default_value( true )
 					->set_help_text( 'Check this box to show call icon.' ),
 
-					Field::make( 'separator', 'emailsep', 'Email' )
-					->set_classes( 'mcwsep' ),
+					Field::make( 'separator', 'emailsep', 'Email Options' )
+					->set_classes( 'mcwsep-child' ),
 
 					// checkbox to show email button.
 					Field::make( 'checkbox', 'mcw_show_email', 'Show Email Button' )
@@ -253,8 +351,8 @@ function mcw_register_fields() {
 					->set_default_value( true )
 					->set_help_text( 'Check this box to show email icon.' ),
 
-					Field::make( 'separator', 'telegramsep', 'Telegram' )
-					->set_classes( 'mcwsep' ),
+					Field::make( 'separator', 'telegramsep', 'Telegram Options' )
+					->set_classes( 'mcwsep-child' ),
 
 					// checkbox to show telegram button.
 					Field::make( 'checkbox', 'mcw_show_telegram', 'Show Telegram Button' )
@@ -278,8 +376,8 @@ function mcw_register_fields() {
 					->set_default_value( true )
 					->set_help_text( 'Check this box to show telegram icon.' ),
 
-					Field::make( 'separator', 'custombtn', 'Custom Button' )
-					->set_classes( 'mcwsep' ),
+					Field::make( 'separator', 'custombtn', 'Custom Button Options' )
+					->set_classes( 'mcwsep-child' ),
 
 					// checkbox to show custom button.
 					Field::make( 'checkbox', 'mcw_show_custom', 'Show Custom Button' )
@@ -311,6 +409,16 @@ function mcw_register_fields() {
 							Field::make( 'text', 'mcw_custom_button_icon', 'Icon' )
 							->set_default_value( 'fa fa-whatsapp' )
 							->set_help_text( 'Please fill in the button icon. e,g fa fa-whatsapp or leave it blank if you dont want to show icon' ),
+
+							// button background color.
+							Field::make( 'color', 'mcw_custom_button_bg', 'Background' )
+							->set_palette( array( '#15a349', '#9b0718', '#866300', '#066492' ) )
+							->set_alpha_enabled( true ),
+
+							// button text color.
+							Field::make( 'color', 'mcw_custom_button_color', 'Text Color' )
+							->set_palette( array( '#ffffff', '#000000' ) )
+							->set_alpha_enabled( true ),
 
 						)
 					)

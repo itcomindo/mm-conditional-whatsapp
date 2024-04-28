@@ -40,7 +40,7 @@ add_action( 'wp_footer', 'mm_mcw_whatsapp' );
  * Staff
  */
 function mm_get_staff() {
-	$pass = mah( array( 'svg', 'img', 'src', 'span' ) );
+	$pass = mah( array( 'svg', 'img', 'src', 'span', 'i' ) );
 	$mcw  = carbon_get_theme_option( 'mcw' );
 	if ( $mcw ) {
 		foreach ( $mcw as $staff ) {
@@ -109,6 +109,54 @@ function mm_get_staff() {
 						<?php
 						mcw_telegram_button( $staff['mcw_show_telegram'], $staff['mcw_show_telegram_icon'], $staff['mcw_telegram'], $staff['mcw_telegram_text'] );
 						?>
+
+						<!-- Custom Buttons -->
+
+						<?php
+						$mcw_show_custom = $staff['mcw_show_custom'];
+						if ( $mcw_show_custom ) {
+							$btn_num            = 0;
+							$mcw_custom_buttons = $staff['mcw_custom_button'];
+							foreach ( $mcw_custom_buttons as $cbtn ) {
+								++$btn_num;
+								$cbtn_name = $cbtn['mcw_custom_button_name'];
+								$cbtn_url  = $cbtn['mcw_custom_button_url'];
+								$cbtn_text = $cbtn['mcw_custom_button_text'];
+								$cbtn_icon = $cbtn['mcw_custom_button_icon'];
+								if ( ! empty( $cbtn_icon ) ) {
+									$cbtn_icon = '<i class="' . esc_attr( $cbtn_icon ) . '"></i>';
+								} else {
+									$cbtn_icon = '';
+								}
+
+								$cbtn_bg    = $cbtn['mcw_custom_button_bg'];
+								$cbtn_color = $cbtn['mcw_custom_button_color'];
+
+								$style = '';
+								if ( $cbtn_color ) {
+									$style .= 'color: ' . esc_attr( $cbtn_color ) . ';';
+								}
+
+								if ( $cbtn_bg ) {
+									$style .= 'background-color: ' . esc_attr( $cbtn_bg ) . ';';
+								}
+								// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped.
+								$cbtn_bg = $style ? 'style="' . $style . '"' : '';
+
+								?>
+								
+								<li>
+									<a <?php echo $cbtn_bg; ?> class="mcw-cta mcw-custom-btn btn-num-<?php echo esc_attr( $btn_num ); ?>" href="<?php echo esc_url( $cbtn_url ); ?>" title="<?php echo esc_attr( $cbtn_name ); ?>" rel="noopener nofollow" target="_blank">
+										<?php echo wp_kses( $cbtn_icon, $pass ); ?><?php echo esc_html( $cbtn_text ); ?>
+									</a>
+								</li>
+								<?php
+							}
+						}
+						?>
+						
+
+
 					</ul>
 				</div>
 			</div>
@@ -167,6 +215,55 @@ function mm_get_staff() {
 					<?php
 					mcw_telegram_button( $staff['mcw_show_telegram'], $staff['mcw_show_telegram_icon'], $staff['mcw_telegram'], $staff['mcw_telegram_text'] );
 					?>
+
+
+					<!-- Custom Buttons -->
+					<?php
+						$mcw_show_custom = $staff['mcw_show_custom'];
+					if ( $mcw_show_custom ) {
+						$btn_num            = 0;
+						$mcw_custom_buttons = $staff['mcw_custom_button'];
+						foreach ( $mcw_custom_buttons as $cbtn ) {
+							++$btn_num;
+							$cbtn_name = $cbtn['mcw_custom_button_name'];
+							$cbtn_url  = $cbtn['mcw_custom_button_url'];
+							$cbtn_text = $cbtn['mcw_custom_button_text'];
+							$cbtn_icon = $cbtn['mcw_custom_button_icon'];
+							if ( ! empty( $cbtn_icon ) ) {
+								$cbtn_icon = '<i class="' . esc_attr( $cbtn_icon ) . '"></i>';
+							} else {
+								$cbtn_icon = '';
+							}
+
+							$cbtn_bg    = $cbtn['mcw_custom_button_bg'];
+							$cbtn_color = $cbtn['mcw_custom_button_color'];
+
+							$style = '';
+							if ( $cbtn_color ) {
+								$style .= 'color: ' . esc_attr( $cbtn_color ) . ';';
+							}
+
+							if ( $cbtn_bg ) {
+								$style .= 'background-color: ' . esc_attr( $cbtn_bg ) . ';';
+							}
+
+							// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped.
+							$cbtn_bg = $style ? 'style="' . $style . '"' : '';
+
+							?>
+								
+								<li>
+									<a <?php echo $cbtn_bg; ?> class="mcw-cta mcw-custom-btn btn-num-<?php echo esc_attr( $btn_num ); ?>" href="<?php echo esc_url( $cbtn_url ); ?>" title="<?php echo esc_attr( $cbtn_name ); ?>" rel="noopener nofollow" target="_blank">
+									<?php echo wp_kses( $cbtn_icon, $pass ); ?><?php echo esc_html( $cbtn_text ); ?>
+									</a>
+								</li>
+								<?php
+						}
+					}
+					?>
+
+
+
 				</ul>
 			</div>
 		</div>
@@ -381,3 +478,4 @@ function mm_get_dummy_staff() {
 			</div>
 	<?php
 }
+
