@@ -92,6 +92,7 @@ function mcw_register_fields() {
 
 			// image to promo.
 			Field::make( 'image', 'mcw_promo_image', 'Promo Image' )
+			->set_value_type( 'url' )
 			->set_required( true )
 			->set_conditional_logic(
 				array(
@@ -107,7 +108,8 @@ function mcw_register_fields() {
 						'compare' => '=',
 					),
 				)
-			),
+			)
+			->set_help_text( 'Please upload the promo image with size in width no more than 250px withs aspect ratio 1/1 (make sure image dimension is 250x250px)' ),
 
 			// promo button url.
 			Field::make( 'text', 'mcw_promo_button_url', 'Promo Button URL' )
@@ -129,8 +131,8 @@ function mcw_register_fields() {
 			Field::make( 'text', 'mcw_promo_button_text', 'Promo Button Text' )
 			->set_required( true )
 			->set_attribute( 'placeholder', 'Read More' )
-			->set_default_value( 'Read More' )
-			->set_help_text( 'Please fill in the promo button text' )
+			->set_default_value( 'Buy Now!' )
+			->set_help_text( 'Please fill in the promo button text e.g Buy Now!' )
 			->set_conditional_logic(
 				array(
 					array(
