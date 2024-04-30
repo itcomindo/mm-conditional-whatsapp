@@ -31,6 +31,8 @@ function mm_mcw_call_carbon_fields() {
 	if ( ! class_exists( '\Carbon_Fields\Carbon_Fields' ) ) {
 		require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
 		\Carbon_Fields\Carbon_Fields::boot();
+	} else {
+		return;
 	}
 }
 
@@ -40,6 +42,8 @@ function mm_mcw_call_carbon_fields() {
 function mcw_cf_loaded() {
 	if ( ! function_exists( 'carbon_fields_boot_plugin' ) ) {
 		mm_mcw_call_carbon_fields();
+	} else {
+		return;
 	}
 }
 add_action( 'plugins_loaded', 'mcw_cf_loaded' );
